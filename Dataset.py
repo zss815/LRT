@@ -101,9 +101,9 @@ class ValData(Dataset):
     def __init__(self,data_root):
         super(ValData,self).__init__()
         self.gt_path=[]
-        for file in os.listdir(os.path.join(data_root,'LFReal','Test')):
+        for file in os.listdir(os.path.join(data_root,'LFReal','Val')):
             if not file.startswith('.'):
-                self.gt_path.append(os.path.join(data_root,'LFReal','Test',file))
+                self.gt_path.append(os.path.join(data_root,'LFReal','Val',file))
     
     def __getitem__(self,index):
         gt_path=self.gt_path[index]
