@@ -10,14 +10,14 @@ from Loss import MSLoss
 from utils.metrics import PSNR, SSIM
 
 
-def adjust_learning_rate(optimizer,lr_init,epoch,lr_step):
-    lr = lr_init* (0.9 ** (epoch // lr_step))
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = lr
+def adjust_learning_rate(optimizer):
+    lr=optimizer.param_groups[0]['lr']
+    lr=lr*0.9
+    optimizer.param_groups[0]['lr']=lr
         
         
 def train(args):
-    lr_step=50
+    lr_epoch=50
     epoch_dict,psnr_dict,ssim_dict={},{},{}
     for i in range(1,args.save_num+1):
         epoch_dict[str(i)]=0
@@ -52,8 +52,8 @@ def train(args):
     
     for epoch in range(args.max_epoch):
         model.train()
-        if epoch % lr_step==0:
-            adjust_learning_rate(optimizer,args.lr_init,epoch,lr_step)
+        if epoch % lr_epoch==0 and epoch!=0:
+            adjust_learning_rate(optimizer)
         
         for idx,(inp,gt,gt_d2,gt_d4,low_d4,I_gt_d4,hf_gt) in enumerate(train_loader):
             inp,gt,gt_d2,gt_d4,low_d4,I_gt_d4,hf_gt=Variable(inp).cuda(),Variable(gt).cuda(),Variable(gt_d2).cuda(),Variable(gt_d4).cuda(),Variable(low_d4).cuda(),Variable(I_gt_d4).cuda(),Variable(hf_gt).cuda()
