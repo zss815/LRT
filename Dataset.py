@@ -28,11 +28,11 @@ class TrainData(Dataset):
         k=np.random.uniform(1,4)
         log_read_mean=0.63*np.log(k)+0.61
         log_read=np.random.uniform(log_read_mean-0.141,log_read_mean+0.141)
-        read_scale=np.exp(log_read)*2
+        read_scale=np.exp(log_read)
         
         log_row_mean=0.43*np.log(k)+0.2
         log_row=np.random.uniform(log_row_mean-0.146,log_row_mean+0.146)
-        row_scale=np.exp(log_row)*1.2
+        row_scale=np.exp(log_row)
         
         #Synthesize low-light LF
         low_mp=illum_adjust(gt_mp,v_scale)
@@ -114,11 +114,11 @@ class ValData(Dataset):
         k=np.random.uniform(1,4)
         log_read_mean=0.63*np.log(k)+0.61
         log_read=np.random.uniform(log_read_mean-0.141,log_read_mean+0.141)
-        read_scale=np.exp(log_read)*2
+        read_scale=np.exp(log_read)
         
         log_row_mean=0.43*np.log(k)+0.2
         log_row=np.random.uniform(log_row_mean-0.146,log_row_mean+0.146)
-        row_scale=np.exp(log_row)*1.2
+        row_scale=np.exp(log_row)
         
         #Synthesize low-light LF
         low_mp=illum_adjust(gt_mp,v_scale)
