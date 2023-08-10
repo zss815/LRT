@@ -97,9 +97,9 @@ class TrainData(Dataset):
         return len(self.gt_path)
     
     
-class TestData(Dataset):
+class ValData(Dataset):
     def __init__(self,data_root):
-        super(TestData,self).__init__()
+        super(ValData,self).__init__()
         self.gt_path=[]
         for file in os.listdir(os.path.join(data_root,'LFReal','Test')):
             if not file.startswith('.'):
