@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from torch.autograd import Variable
 
 from networks.LRT import LRT
-from Dataset import TrainData, TestData
+from Dataset import TrainData, ValData
 from Loss import MSLoss
 
 from utils.metrics import PSNR, SSIM
@@ -31,10 +31,10 @@ def train(args):
         os.makedirs(args.save_root,exist_ok=True)
             
     train_set=TrainData(args.data_root,crop_size=args.crop_size)
-    test_set=TestData(args.data_root)
+    val_set=ValData(args.data_root)
     
     train_loader = DataLoader(dataset=train_set,batch_size=args.batch_size,shuffle=True)
-    test_loader = DataLoader(dataset=test_set,batch_size=args.batch_size,shuffle=False)
+    val_loader = DataLoader(dataset=val_set,batch_size=args.batch_size,shuffle=False)
     test_num=len(test_set)
     
     model=LRT(in_channels=3,base_channels=16,an=7,num_formers=1)
@@ -70,7 +70,7 @@ def train(args):
             total_psnr=0
             total_ssim=0
             
-            for inp,gt in test_loader:
+            for inp,gt in val_loader:
                 inp=inp.cuda()
                 pred=model(inp)[0]
                 pred=pred.cpu().numpy()
