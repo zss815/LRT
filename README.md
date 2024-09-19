@@ -17,7 +17,7 @@ If you find this work is helpful to you, please cite the following paper:
 
 ```
 @article{Zhang2023,
-author={Shansi Zhang and Nan Meng and Edmund Y. Lam},
+author={Shansi Zhang, Nan Meng and Edmund Y. Lam},
 journal={IEEE Transactions on Image Processing}, 
 title={LRT: An Efficient Low-Light Restoration Transformer for Dark Light Field Images}, 
 volume={32},
