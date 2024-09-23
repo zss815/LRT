@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 
 
-
 def RGB2Bayer(img):
     ''' Mosacing to GRBG format Bayer pattern
         |G|R|
